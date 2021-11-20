@@ -1,5 +1,6 @@
 :root {
 	--green: rgb(81, 106, 93);
+	--greenLine: rgba(81, 106, 93, 0.1);
 }
 
 body {
@@ -31,13 +32,12 @@ button {
 }
 
 button:hover {
-	background-color: var(--green);
+	background-color: var(--greenLine1);
 	border: 1px solid var(--green);
 	margin: 10px 0;
 	box-sizing: border-box;
 	width: 100%;
 	padding: 10px;
-	color: white;
 }
 
 .product * {
@@ -106,3 +106,20 @@ button:hover {
 }
 
 /* user inputs */
+#product_order {
+	margin: 0;
+}
+#product_order ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+#product_order ul:nth-child(odd) {
+	background-color: var(--greenLine);
+}
+
+#product_order li {
+	margin: 5px 0;
+	flex-basis: 30%;
+}
