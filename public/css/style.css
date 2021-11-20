@@ -69,16 +69,25 @@ button:hover {
 }
 
 .product_list {
-	padding: 5px;
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 300px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+.product_list h3 {
+	margin: 0;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+.product_list p {
+	margin: 0;
 }
 
 .product_select {
 	display: flex;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
+	flex-direction: column;
 	margin: auto 10px;
 	flex-grow: 1;
 	flex-shrink: 1;
@@ -88,12 +97,13 @@ button:hover {
 .product_select input {
 	text-align: center;
 	width: 70px;
-	margin: auto;
+	margin: 5px auto;
 	padding: 10px;
 }
 
 .product_select button {
 	width: 70px;
+	margin: 5px auto;
 }
 
 /* admin inputs */

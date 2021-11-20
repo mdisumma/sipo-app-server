@@ -10,10 +10,11 @@ const orderList = [
 	{
 		name: "Name",
 		number: "Item",
-		unit: "Unit",
-		totUnit: "Tot units",
-		price: "Price",
-		totPrice: "Tot price",
+		unit: "Unit Gr",
+		totUnit: "Tot Gr",
+		price: "Price £",
+		totPrice: "Tot £",
+		trash: "",
 	},
 ];
 
@@ -28,7 +29,7 @@ const DisplayProductOrder = () => {
 	<li>${item.totUnit}</li>
 	<li>${item.price}</li>
 	<li>${item.totPrice}</li>
-	<li class="trash">x</li>
+	<li class="trash">${item.trash}</li>
 	
 		</ul>
 		`;
@@ -49,7 +50,9 @@ window.addEventListener("DOMContentLoaded", () => {
 					</div>
 					<div class="product_list">
 						<h3>${item.name}</h3>
+				      <p>Unit Gr</p>
 						<p>${item.pack}</p>
+						<p>Price £</p>
 						<p>${item.price}</p>
 					</div>
 					<div class="product_select">
@@ -81,8 +84,8 @@ window.addEventListener("DOMContentLoaded", () => {
 					console.log(productNumber);
 
 					const productName = e.path[2].children[1].children[0].innerHTML;
-					const productPack = e.path[2].children[1].children[1].innerHTML;
-					const productPrice = e.path[2].children[1].children[2].innerHTML;
+					const productPack = e.path[2].children[1].children[2].innerHTML;
+					const productPrice = e.path[2].children[1].children[4].innerHTML;
 
 					const order = {
 						name: productName,
@@ -92,6 +95,7 @@ window.addEventListener("DOMContentLoaded", () => {
 						totUnit: productPack * productNumber,
 						price: productPrice,
 						totPrice: productPrice * productNumber,
+						trash: "<i class='far fa-trash-alt'></i>",
 					};
 					console.log(order);
 					orderList.push(order);
