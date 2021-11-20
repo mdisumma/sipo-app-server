@@ -4,6 +4,7 @@ const pack = document.querySelector("#pack");
 const image = document.querySelector("#image");
 const price = document.querySelector("#price");
 const productList = document.querySelector("#product_list");
+const productorder = document.querySelector("#product_order");
 
 const orderList = [];
 
@@ -27,7 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
 					<div class="product_select">
 						<input
 							type="number"
-							id="select_quantity"
+							class="select_quantity"
 							name="select_quantity"
 							placeholder="0"
 							
@@ -47,21 +48,22 @@ window.addEventListener("DOMContentLoaded", () => {
 			console.log(addButton);
 			const selectQuantity = document.querySelector("#select_quantity");
 			addButton.addEventListener("click", (e) => {
-				e.stopPropagation();
-				e.preventDefault();
-				console.log(selectQuantity);
-				const productName = e.path[2].children[1].children[0].innerHTML;
-				const productPack = e.path[2].children[1].children[1].innerHTML;
-				const productPrice = e.path[2].children[1].children[2].innerHTML;
+				if (e.target.className !== "select_quantity") {
+					console.log(e);
+					console.log(selectQuantity);
+					const productName = e.path[2].children[1].children[0].innerHTML;
+					const productPack = e.path[2].children[1].children[1].innerHTML;
+					const productPrice = e.path[2].children[1].children[2].innerHTML;
 
-				const order = {
-					name: productName,
-					pack: productPack,
-					price: productPrice,
-				};
-				console.log(order);
-				orderList.push(order);
-				console.log(orderList);
+					const order = {
+						name: productName,
+						pack: productPack,
+						price: productPrice,
+					};
+					console.log(order);
+					orderList.push(order);
+					console.log(orderList);
+				}
 			});
 		})
 		.catch((error) => console.log("error", error));
