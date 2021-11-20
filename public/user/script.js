@@ -6,16 +6,30 @@ const price = document.querySelector("#price");
 const productList = document.querySelector("#product_list");
 const productOrder = document.querySelector("#product_order");
 
-const orderList = [{ name: "Name", pack: "Pack", price: "Price" }];
+const orderList = [
+	{
+		name: "Name",
+		number: "Item",
+		unit: "Unit",
+		totUnit: "Tot units",
+		price: "Price",
+		totPrice: "Tot price",
+	},
+];
 
 const DisplayProductOrder = () => {
 	productOrder.innerHTML = "";
 	orderList.map((item) => {
 		productOrder.innerHTML += `
 		<ul>
-	<li>${item.name}</li>
-	<li>${item.pack}</li>
+	<li class="product_name">${item.name}</li>
+	<li>${item.number}</li>
+	<li>${item.unit}</li>
+	<li>${item.totUnit}</li>
 	<li>${item.price}</li>
+	<li>${item.totPrice}</li>
+	<li class="trash">x</li>
+	
 		</ul>
 		`;
 	});
@@ -35,13 +49,13 @@ window.addEventListener("DOMContentLoaded", () => {
 					</div>
 					<div class="product_list">
 						<h3>${item.name}</h3>
-						<p>Pack gr: ${item.pack}</p>
-						<p>Price £: ${item.price}</p>
+						<p>${item.pack}</p>
+						<p>${item.price}</p>
 					</div>
 					<div class="product_select">
 						<input
 							type="number"
-							class="select_quantity"
+							class="input_value"
 							name="select_quantity"
 							placeholder="0"
 							
@@ -59,19 +73,25 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 			const addButton = document.querySelector("#product_list");
 			console.log(addButton);
-			const selectQuantity = document.querySelector("#select_quantity");
 			addButton.addEventListener("click", (e) => {
-				if (e.target.className !== "select_quantity") {
+				if (e.target.className === "add_Button") {
 					console.log(e);
-					console.log(selectQuantity);
+
+					const productNumber = e.path[1].childNodes[1].value;
+					console.log(productNumber);
+
 					const productName = e.path[2].children[1].children[0].innerHTML;
 					const productPack = e.path[2].children[1].children[1].innerHTML;
 					const productPrice = e.path[2].children[1].children[2].innerHTML;
 
 					const order = {
 						name: productName,
-						pack: productPack,
+						number: productNumber,
+						unit: productPack,
 						price: productPrice,
+						totUnit: productPack * productNumber,
+						price: productPrice,
+						totPrice: productPrice * productNumber,
 					};
 					console.log(order);
 					orderList.push(order);

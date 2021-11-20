@@ -43,6 +43,7 @@ button:hover {
 .product * {
 	box-sizing: border-box;
 }
+
 .product {
 	max-width: 960px;
 	min-width: 320px;
@@ -59,18 +60,21 @@ button:hover {
 	flex-shrink: 0;
 	flex-basis: 140px;
 }
+
 .product_image img {
 	display: flex;
 	max-height: 100px;
 	max-width: 100px;
 	margin: auto;
 }
+
 .product_list {
 	padding: 5px;
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 300px;
 }
+
 .product_select {
 	display: flex;
 	justify-content: space-evenly;
@@ -80,6 +84,7 @@ button:hover {
 	flex-shrink: 1;
 	flex-basis: 100px;
 }
+
 .product_select input {
 	text-align: center;
 	width: 70px;
@@ -109,17 +114,27 @@ button:hover {
 #product_order {
 	margin: 0;
 }
+
 #product_order ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	display: flex;
 }
+
 #product_order ul:nth-child(odd) {
 	background-color: var(--greenLine);
 }
 
 #product_order li {
 	margin: 5px 0;
+	width: 15%;
+}
+
+#product_order .product_name {
 	flex-basis: 30%;
+}
+
+#product_order .trash {
+	flex-basis: 5%;
 }
