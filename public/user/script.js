@@ -30,6 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
 							id="select_quantity"
 							name="select_quantity"
 							placeholder="0"
+							
 						/>
 
 						<button
@@ -46,6 +47,9 @@ window.addEventListener("DOMContentLoaded", () => {
 			console.log(addButton);
 			const selectQuantity = document.querySelector("#select_quantity");
 			addButton.addEventListener("click", (e) => {
+				e.stopPropagation();
+				e.preventDefault();
+				console.log(selectQuantity);
 				const productName = e.path[2].children[1].children[0].innerHTML;
 				const productPack = e.path[2].children[1].children[1].innerHTML;
 				const productPrice = e.path[2].children[1].children[2].innerHTML;
