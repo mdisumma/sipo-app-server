@@ -11,7 +11,24 @@ window.addEventListener("DOMContentLoaded", () => {
 	fetch("http://localhost:3001/api")
 		.then((response) => response.json())
 		.then((data) => {
-			data.forEach((item) => console.log(item));
+			data.map((item) => {
+				productList.innerHTML += `
+				<div key=${item.image} class="product">
+							<div class="product_image">
+								<img src=${item.image} alt=${item.name} />
+							</div>
+							<div class="product_list">
+								<h3>${item.name}</h3>
+								<p>Pack gr: ${item.pack}</p>
+								<p>Price £: ${item.price}</p>
+							</div>
+							<div class="product_select">
+							<button id="delete" type="delete" value="delete">delete</button>
+
+							<button id="update" type="update" value="update">update</button>
+							</div>
+				`;
+			});
 		})
 		.catch((error) => console.log("error", error));
 
