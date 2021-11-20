@@ -29,7 +29,9 @@ const Auth = (app, database, table) => {
 		console.log(data);
 
 		const { session, session_error } = await database.auth.signIn(request.body);
-		// console.log(session);
+
+		console.log(session);
+		console.log(data);
 
 		if (session && data) {
 			response.json({ session, data });
