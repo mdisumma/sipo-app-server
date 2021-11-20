@@ -4,7 +4,9 @@ const pack = document.querySelector("#pack");
 const image = document.querySelector("#image");
 const price = document.querySelector("#price");
 const productList = document.querySelector("#product_list");
-console.log(productList);
+
+const orderList = [];
+
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
 	//DATA
@@ -14,31 +16,48 @@ window.addEventListener("DOMContentLoaded", () => {
 			data.map((item) => {
 				productList.innerHTML += `
 				<div key=${item.image} class="product">
-							<div class="product_image">
-								<img src=${item.image} alt=${item.name} />
-							</div>
-							<div class="product_list">
-								<h3>${item.name}</h3>
-								<p>Pack gr: ${item.pack}</p>
-								<p>Price £: ${item.price}</p>
-							</div>
-							<div class="product_select">
-								<input
-									type="number"
-									id="select_quantity"
-									name="select_quantity"
-									placeholder="0"
-								/>
+					<div class="product_image">
+						<img src=${item.image} alt=${item.name} />
+					</div>
+					<div class="product_list">
+						<h3>${item.name}</h3>
+						<p>Pack gr: ${item.pack}</p>
+						<p>Price £: ${item.price}</p>
+					</div>
+					<div class="product_select">
+						<input
+							type="number"
+							id="select_quantity"
+							name="select_quantity"
+							placeholder="0"
+						/>
 
-								<button
-									type="button"
-									value="addButton"
-									id="addButton"
-								>
-									add
-								</button>
-							</div>
+						<button
+							type="button"
+							value="add_Product"
+							class="add_Button">
+							add
+						</button>
+					</div>
+				</div>
 				`;
+			});
+			const addButton = document.querySelector("#product_list");
+			console.log(addButton);
+			const selectQuantity = document.querySelector("#select_quantity");
+			addButton.addEventListener("click", (e) => {
+				const productName = e.path[2].children[1].children[0].innerHTML;
+				const productPack = e.path[2].children[1].children[1].innerHTML;
+				const productPrice = e.path[2].children[1].children[2].innerHTML;
+
+				const order = {
+					name: productName,
+					pack: productPack,
+					price: productPrice,
+				};
+				console.log(order);
+				orderList.push(order);
+				console.log(orderList);
 			});
 		})
 		.catch((error) => console.log("error", error));

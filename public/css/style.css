@@ -10,24 +10,14 @@ body {
 }
 
 header {
+	padding: 50px 0;
 	display: block;
 	border-bottom: 1px solid var(--green);
 }
 
 #logo {
 	display: block;
-	margin: 10% auto;
-}
-
-.inputs {
-	margin: 10px 0 0 0;
-	display: flex;
-	justify-content: space-between;
-}
-
-.inputs input {
-	padding: 5px 0;
-	width: 18vw;
+	margin: 0% auto;
 }
 
 button {
@@ -100,3 +90,19 @@ button:hover {
 .product_select button {
 	width: 70px;
 }
+
+/* admin inputs */
+.inputs {
+	margin: 10px 0 0 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.inputs input {
+	padding: 5px 0;
+	max-width: 180px;
+	min-width: 70px;
+	width: 18vw;
+}
+
+/* user inputs */
