@@ -4,9 +4,22 @@ const pack = document.querySelector("#pack");
 const image = document.querySelector("#image");
 const price = document.querySelector("#price");
 const productList = document.querySelector("#product_list");
-const productorder = document.querySelector("#product_order");
+const productOrder = document.querySelector("#product_order");
 
-const orderList = [];
+const orderList = [{ name: "Name", pack: "Pack", price: "Price" }];
+
+const DisplayProductOrder = () => {
+	productOrder.innerHTML = "";
+	orderList.map((item) => {
+		productOrder.innerHTML += `
+		<ul>
+	<li>${item.name}</li>
+	<li>${item.pack}</li>
+	<li>${item.price}</li>
+		</ul>
+		`;
+	});
+};
 
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
@@ -63,6 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
 					console.log(order);
 					orderList.push(order);
 					console.log(orderList);
+					DisplayProductOrder();
 				}
 			});
 		})
