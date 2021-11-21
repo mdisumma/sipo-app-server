@@ -32,9 +32,9 @@ window.addEventListener("DOMContentLoaded", () => {
 		.then((data) => {
 			data.map((item) => {
 				productList.innerHTML += `
-				<div key=${item.image} class="product">
+				<div id="${item.name}" class="product">
 							<div class="product_image">
-								<img src=${item.image} alt=${item.name} />
+								<img src="${item.image}" alt="${item.name}" />
 							</div>
 							<div class="product_list">
 						    <h3>${item.name}</h3>
@@ -71,10 +71,11 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 
 			//PUT
-			const updateBt = document.querySelector("#update");
+			const updateBt = document.querySelector("#product_list");
 			console.log(updateBt);
 			updateBt.addEventListener("click", (e) => {
 				console.log(e);
+				console.log(e.path[2].children[1].innerText);
 				// 	fetch("http://localhost:3001", {
 				// 		method: "PUT",
 				// 		headers: { "Content-Type": "application/json" },

@@ -97,9 +97,9 @@ window.addEventListener("DOMContentLoaded", () => {
 					const productNumber = e.path[1].childNodes[1].value;
 					// console.log(productNumber);
 
-					const productName = e.path[2].children[1].children[0].innerHTML;
-					const productPack = e.path[2].children[1].children[2].innerHTML;
-					const productPrice = e.path[2].children[1].children[4].innerHTML;
+					const productName = e.path[2].children[1].children[0].innerText;
+					const productPack = e.path[2].children[1].children[2].innerText;
+					const productPrice = e.path[2].children[1].children[4].innerText;
 
 					const order = {
 						name: productName,
