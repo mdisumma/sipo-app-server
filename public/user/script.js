@@ -18,21 +18,50 @@ const orderList = [
 	},
 ];
 
-const DisplayProductOrder = () => {
+productOrder.innerHTML = "";
+orderList.map((item) => {
+	productOrder.innerHTML += `
+		<ul>
+		<li class="product_name">${item.name}</li>
+		<li>${item.number}</li>
+		<li>${item.unit}</li>
+		<li>${item.totUnit}</li>
+		<li>${item.price}</li>
+		<li>${item.totPrice}</li>
+		<li class="trash"><button >${item.trash}</button></li>
+		</ul>`;
+});
+
+const displayOrderList = (e) => {
 	productOrder.innerHTML = "";
+	let i = 0;
 	orderList.map((item) => {
 		productOrder.innerHTML += `
-		<ul>
-	<li class="product_name">${item.name}</li>
-	<li>${item.number}</li>
-	<li>${item.unit}</li>
-	<li>${item.totUnit}</li>
-	<li>${item.price}</li>
-	<li>${item.totPrice}</li>
-	<li class="trash"><button >${item.trash}</button></li>
-	
-		</ul>
-		`;
+		<ul id="${i++}">
+		<li class="product_name">${item.name}</li>
+		<li>${item.number}</li>
+		<li>${item.unit}</li>
+		<li>${item.totUnit}</li>
+		<li>${item.price}</li>
+		<li>${item.totPrice}</li>
+		<li class="trash"><button >${item.trash}</button></li>
+		</ul>`;
+	});
+
+	const trash = document.querySelector("#product_order");
+
+	trash.addEventListener("click", (e) => {
+		const position = e.path[3].id;
+		console.log(position);
+
+		const deleteProduct = () => {
+			orderList.splice(position, 1);
+		};
+		console.log(orderList);
+		deleteProduct();
+		console.log(orderList);
+
+		// displayOrderList();
 	});
 };
 
@@ -75,13 +104,12 @@ window.addEventListener("DOMContentLoaded", () => {
 				`;
 			});
 			const addButton = document.querySelector("#product_list");
-			console.log(addButton);
+			// console.log(addButton);
 			addButton.addEventListener("click", (e) => {
 				if (e.target.className === "add_Button") {
-					console.log(e);
-
+					// console.log(e);
 					const productNumber = e.path[1].childNodes[1].value;
-					console.log(productNumber);
+					// console.log(productNumber);
 
 					const productName = e.path[2].children[1].children[0].innerHTML;
 					const productPack = e.path[2].children[1].children[2].innerHTML;
@@ -91,16 +119,15 @@ window.addEventListener("DOMContentLoaded", () => {
 						name: productName,
 						number: productNumber,
 						unit: productPack,
-						price: productPrice,
 						totUnit: productPack * productNumber,
 						price: productPrice,
 						totPrice: productPrice * productNumber,
 						trash: "<i class='far fa-trash-alt'></i>",
 					};
-					console.log(order);
+					// console.log(order);
 					orderList.push(order);
-					console.log(orderList);
-					DisplayProductOrder();
+					// console.log(orderList);
+					displayOrderList();
 				}
 			});
 		})
