@@ -18,20 +18,6 @@ const orderList = [
 	},
 ];
 
-productOrder.innerHTML = "";
-orderList.map((item) => {
-	productOrder.innerHTML += `
-		<ul>
-		<li class="product_name">${item.name}</li>
-		<li>${item.number}</li>
-		<li>${item.unit}</li>
-		<li>${item.totUnit}</li>
-		<li>${item.price}</li>
-		<li>${item.totPrice}</li>
-		<li class="trash"><button >${item.trash}</button></li>
-		</ul>`;
-});
-
 const displayOrderList = (e) => {
 	productOrder.innerHTML = "";
 	let i = 0;
@@ -61,7 +47,7 @@ const displayOrderList = (e) => {
 		deleteProduct();
 		console.log(orderList);
 
-		// displayOrderList();
+		displayOrderList();
 	});
 };
 
