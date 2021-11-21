@@ -24,10 +24,10 @@ const Product = (app, url, database, table) => {
 			let { data, error } = await database
 				.from(table)
 				.update({
-					name: request.body.new_name,
-					pack: request.body.new_pack,
-					image: request.body.new_image,
-					price: request.body.new_price,
+					name: request.body.replaceName,
+					pack: request.body.replacePack,
+					image: request.body.replaseImage,
+					price: request.body.replacePrice,
 				})
 				.match({
 					name: request.body.name,
@@ -35,8 +35,6 @@ const Product = (app, url, database, table) => {
 					image: request.body.image,
 					price: request.body.price,
 				});
-			console.log(data);
-			console.log(error);
 		});
 };
 

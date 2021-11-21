@@ -114,9 +114,10 @@ button:hover {
 
 .inputs input {
 	padding: 5px 0;
+	margin: 5px;
 	max-width: 235px;
 	min-width: 80px;
-	width: 24vw;
+	width: 25vw;
 }
 
 /* user inputs */

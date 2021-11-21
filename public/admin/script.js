@@ -86,24 +86,37 @@ window.addEventListener("DOMContentLoaded", () => {
 			updateBt.addEventListener("click", (e) => {
 				if (e.target.id === "update") {
 					console.log(e);
-					console.log(e.path[2].children[1].innerText);
+					const targetName = e.path[2].children[1].children[0].innerText;
+					console.log(e.path[2].children[1].children[0].innerText);
+					const targetPack = e.path[2].children[1].children[2].innerText;
+					console.log(e.path[2].children[1].children[2].innerText);
+					const targetImage =
+						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
+							.currentSrc;
 					console.log(
 						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
 							.currentSrc
 					);
-					// 	fetch("http://localhost:3001", {
-					// 		method: "PUT",
-					// 		headers: { "Content-Type": "application/json" },
-					// 		body: JSON.stringify({
-					// 			name: product.value,
-					// 			pack: pack.value,
-					// 			image: image.value,
-					// 			price: price.value,
-					// 		}),
-					// 	})
-					// 		.then((response) => response.text())
-					// 		.then((result) => console.log(result))
-					// 		.catch((error) => console.log("error", error));
+					const targetPrice = e.path[2].children[1].children[4].innerText;
+					console.log(e.path[2].children[1].children[4].innerText);
+
+					fetch("http://localhost:3001", {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							replacenName: product.value,
+							replacePack: pack.value,
+							replaceImage: image.value,
+							replacePrice: price.value,
+							name: targetName,
+							pack: targetPack,
+							image: targetImage,
+							price: targetPrice,
+						}),
+					})
+						.then((response) => response.text())
+						.then((result) => console.log(result))
+						.catch((error) => console.log("error", error));
 				}
 			});
 		})
