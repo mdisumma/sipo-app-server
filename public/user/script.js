@@ -29,7 +29,7 @@ const DisplayProductOrder = () => {
 	<li>${item.totUnit}</li>
 	<li>${item.price}</li>
 	<li>${item.totPrice}</li>
-	<li class="trash">${item.trash}</li>
+	<li class="trash"><button >${item.trash}</button></li>
 	
 		</ul>
 		`;
@@ -50,9 +50,9 @@ window.addEventListener("DOMContentLoaded", () => {
 					</div>
 					<div class="product_list">
 						<h3>${item.name}</h3>
-				      <p>Unit Gr</p>
+				      <p>Unit Gr:</p>
 						<p>${item.pack}</p>
-						<p>Price £</p>
+						<p>Price £:</p>
 						<p>${item.price}</p>
 					</div>
 					<div class="product_select">

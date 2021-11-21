@@ -32,14 +32,8 @@ button {
 }
 
 button:hover {
-	background-color: var(--greenLine1);
-	border: 1px solid var(--green);
-	margin: 10px 0;
-	box-sizing: border-box;
-	width: 100%;
-	padding: 10px;
+	background-color: var(--greenLine);
 }
-
 .product * {
 	box-sizing: border-box;
 }
@@ -69,7 +63,7 @@ button:hover {
 }
 
 .product_list {
-	flex-grow: 1;
+	flex-grow: 0;
 	flex-shrink: 1;
 	flex-basis: 300px;
 	display: grid;
@@ -147,4 +141,10 @@ button:hover {
 
 #product_order .trash {
 	flex-basis: 5%;
+}
+#product_order .trash button {
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
 }
