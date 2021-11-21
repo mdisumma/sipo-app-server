@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
 					</div>
 					<div class="product_list">
 						<h3>${item.name}</h3>
-				      <p>Unit Gr:</p>
+				      <p>Unit gr:</p>
 						<p>${item.pack}</p>
 						<p>Price £:</p>
 						<p>${item.price}</p>
