@@ -1,6 +1,5 @@
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
-	const id = document.querySelector("#id");
 	const product = document.querySelector("#product");
 	const pack = document.querySelector("#pack");
 	const image = document.querySelector("#image");
@@ -14,7 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({
-				id: id.value,
 				name: product.value,
 				pack: pack.value,
 				image: image.value,
@@ -52,44 +50,61 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 
 			//DELETE
-			const deleteBt = document.querySelector("#delete");
-			deleteBt.addEventListener("click", (event) => {
-				fetch("http://localhost:3001", {
-					method: "DELETE",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						id: id.value,
-						name: product.value,
-						pack: pack.value,
-						image: image.value,
-						price: price.value,
-					}),
-				})
-					.then((response) => response.text())
-					.then((result) => console.log(result))
-					.catch((error) => console.log("error", error));
+			const deleteBt = document.querySelector("#product_list");
+
+			deleteBt.addEventListener("click", (e) => {
+				if (e.target.value === "delete") {
+					console.log(e.path[2].children[1].children[0].innerText);
+					console.log(e.path[2].children[1].children[2].innerText);
+					console.log(e.path[2].children[1].children[4].innerText);
+					console.log(
+						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
+							.currentSrc
+					);
+
+					fetch("http://localhost:3001", {
+						method: "DELETE",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							name: e.path[2].children[1].children[0].innerText,
+							pack: e.path[2].children[1].children[2].innerText,
+							image:
+								e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
+									.currentSrc,
+							price: e.path[2].children[1].children[4].innerText,
+						}),
+					})
+						.then((response) => response.text())
+						.then((result) => console.log(result))
+						.catch((error) => console.log("error", error));
+				}
 			});
 
 			//PUT
 			const updateBt = document.querySelector("#product_list");
-			console.log(updateBt);
+
 			updateBt.addEventListener("click", (e) => {
-				console.log(e);
-				console.log(e.path[2].children[1].innerText);
-				// 	fetch("http://localhost:3001", {
-				// 		method: "PUT",
-				// 		headers: { "Content-Type": "application/json" },
-				// 		body: JSON.stringify({
-				// 			id: id.value,
-				// 			name: product.value,
-				// 			pack: pack.value,
-				// 			image: image.value,
-				// 			price: price.value,
-				// 		}),
-				// 	})
-				// 		.then((response) => response.text())
-				// 		.then((result) => console.log(result))
-				// 		.catch((error) => console.log("error", error));
+				if (e.target.id === "update") {
+					console.log(e);
+					console.log(e.path[2].children[1].innerText);
+					console.log(
+						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
+							.currentSrc
+					);
+					// 	fetch("http://localhost:3001", {
+					// 		method: "PUT",
+					// 		headers: { "Content-Type": "application/json" },
+					// 		body: JSON.stringify({
+					// 			name: product.value,
+					// 			pack: pack.value,
+					// 			image: image.value,
+					// 			price: price.value,
+					// 		}),
+					// 	})
+					// 		.then((response) => response.text())
+					// 		.then((result) => console.log(result))
+					// 		.catch((error) => console.log("error", error));
+				}
 			});
 		})
 		.catch((error) => console.log("error", error));
