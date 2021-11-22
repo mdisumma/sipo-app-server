@@ -17,7 +17,7 @@ const supabase = createClient(SUPABASE_URL, SERVICE_KEY);
 const database = supabase;
 const products_table = "sipo_products";
 const users_table = "sipo_users";
-// const orderBy = "id";
+const orderBy = "name";
 
 // GET products
 // let { data, error } = await supabase
@@ -27,8 +27,10 @@ const users_table = "sipo_users";
 
 //GET
 server.get("/api", async (request, response) => {
-	let { data, error } = await supabase.from(products_table).select("*");
-	// .order(orderBy, { ascending: true });
+	let { data, error } = await supabase
+		.from(products_table)
+		.select("*")
+		.order(orderBy, { ascending: true });
 	response.send(data);
 });
 

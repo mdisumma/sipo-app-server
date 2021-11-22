@@ -14,11 +14,14 @@ body {
 }
 
 header {
-	padding: 50px 0;
+	padding-bottom: 50px;
 	display: block;
 	border-bottom: 1px solid var(--green);
 }
-
+#sign_out {
+	margin-left: 90%;
+	width: 10%;
+}
 #logo {
 	display: block;
 	margin: 0% auto;
@@ -114,10 +117,10 @@ button:hover {
 
 .inputs input {
 	padding: 5px 0;
-	margin: 5px;
+
 	max-width: 235px;
 	min-width: 80px;
-	width: 25vw;
+	width: 23%;
 }
 
 /* user inputs */

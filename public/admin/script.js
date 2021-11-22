@@ -1,3 +1,14 @@
+const SUPABASE_URL = "https://avvelquwyslzkodskshw.supabase.co";
+
+const SERVICE_KEY =
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjMzMzgzMTU1LCJleHAiOjE5NDg5NTkxNTV9.tmww3KW2ZpsLvhPlGq2es22MTmXuWK9Mp-wyGMvAtUY";
+
+const { createClient } = supabase;
+supabase = createClient(
+	"https://avvelquwyslzkodskshw.supabase.co",
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
+);
+
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
 	const product = document.querySelector("#product");
@@ -6,6 +17,22 @@ window.addEventListener("DOMContentLoaded", () => {
 	const price = document.querySelector("#price");
 	const productList = document.querySelector("#product_list");
 	const submitBt = document.querySelector("#submit");
+
+	//LOGOUT
+	const user = supabase.auth.user();
+	console.log(user);
+	const logInPage = "http://127.0.0.1:5501/index.html";
+	fetch(`http://localhost:3001/logout/`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			// email: emailValue,
+		}),
+	})
+		.then((response) => response.json())
+		.then((result) => console.log(result))
+		.catch((error) => console.log("error", error));
+	window.location.href = logInPage;
 
 	//SUBMIT
 	submitBt.addEventListener("click", (event) => {
@@ -93,7 +120,11 @@ window.addEventListener("DOMContentLoaded", () => {
 							.currentSrc;
 					const targetPrice = e.path[2].children[1].children[4].innerHTML;
 
-					console.log(targetName, targetPack, targetImage, targetPrice);
+					console.log(targetName);
+					console.log(targetPack);
+					console.log(targetImage);
+					console.log(targetPrice);
+
 					fetch("http://localhost:3001", {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
