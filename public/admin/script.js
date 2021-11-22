@@ -86,32 +86,27 @@ window.addEventListener("DOMContentLoaded", () => {
 			updateBt.addEventListener("click", (e) => {
 				if (e.target.id === "update") {
 					console.log(e);
-					const targetName = e.path[2].children[1].children[0].innerText;
-					console.log(e.path[2].children[1].children[0].innerText);
-					const targetPack = e.path[2].children[1].children[2].innerText;
-					console.log(e.path[2].children[1].children[2].innerText);
+					const targetName = e.path[2].children[1].children[0].innerHTML;
+					const targetPack = e.path[2].children[1].children[2].innerHTML;
 					const targetImage =
 						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
 							.currentSrc;
-					console.log(
-						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
-							.currentSrc
-					);
-					const targetPrice = e.path[2].children[1].children[4].innerText;
-					console.log(e.path[2].children[1].children[4].innerText);
+					const targetPrice = e.path[2].children[1].children[4].innerHTML;
 
+					console.log(targetName, targetPack, targetImage, targetPrice);
 					fetch("http://localhost:3001", {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
-							replacenName: product.value,
-							replacePack: pack.value,
-							replaceImage: image.value,
-							replacePrice: price.value,
 							name: targetName,
 							pack: targetPack,
 							image: targetImage,
 							price: targetPrice,
+
+							replace_name: product.value,
+							replace_pack: pack.value,
+							replace_image: image.value,
+							replace_price: price.value,
 						}),
 					})
 						.then((response) => response.text())

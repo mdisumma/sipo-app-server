@@ -21,13 +21,14 @@ const Product = (app, url, database, table) => {
 		//PUT
 		.put(async (request, response) => {
 			console.log(request.body);
+
 			let { data, error } = await database
 				.from(table)
 				.update({
-					name: request.body.replaceName,
-					pack: request.body.replacePack,
-					image: request.body.replaseImage,
-					price: request.body.replacePrice,
+					name: request.body.replace_name,
+					pack: request.body.replace_pack,
+					image: request.body.replace_image,
+					price: request.body.replace_price,
 				})
 				.match({
 					name: request.body.name,
