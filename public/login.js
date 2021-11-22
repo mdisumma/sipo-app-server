@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	const signIn = document.querySelector("#sign_in");
 	const signMagiclink = document.querySelector("#sign_magiclink");
 	const signGoogle = document.querySelector("#sign_google");
+	const logOut = document.querySelector("#log_out");
 
 	//SignUP
 	signUp.addEventListener("click", (e) => {
@@ -76,18 +77,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	//LogOUT
 
-	const logOut = document.querySelector("#log_out");
 	logOut.addEventListener("click", (e) => {
 		e.preventDefault();
-
-		fetch("http://localhost:3001/logout/")
+		var post = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email: email.value,
+				password: password.value,
+			}),
+		};
+		fetch("http://localhost:3001/logout/", post)
 			.then((response) => response.text())
 			.then((result) => console.log(result))
 			.catch((error) => console.log("error", error));
 	});
 
 	//SignMAGICLINK
-	signIn.addEventListener("click", async (e) => {
+	signMagiclink.addEventListener("click", async (e) => {
 		e.preventDefault();
 
 		console.log(email.value);
