@@ -1,7 +1,5 @@
 //SUPABASE
 const SUPABASE_URL = "https://avvelquwyslzkodskshw.supabase.co";
-const SERVICE_KEY =
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjMzMzgzMTU1LCJleHAiOjE5NDg5NTkxNTV9.tmww3KW2ZpsLvhPlGq2es22MTmXuWK9Mp-wyGMvAtUY";
 const { createClient } = supabase;
 supabase = createClient(
 	"https://avvelquwyslzkodskshw.supabase.co",
@@ -19,16 +17,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	const logOut = document.querySelector("#log_out");
 
 	//LOGOUT
-	// const session = supabase.auth.session();
-	// console.log(session);
-	// const user = supabase.auth.user();
-	// console.log(user);
-
-	// logOut.addEventListener("click", async () => {
-	// 	const { error } = await supabase.auth.signOut();
-	// 	console.log(supabase);
-	// window.location.href = logInPage;
-	// });
+	logOut.addEventListener("click", async () => {
+		const { error } = await supabase.auth.signOut();
+		console.log(supabase);
+		window.location.href = "/";
+	});
 
 	//SUBMIT
 	submitBt.addEventListener("click", (event) => {
