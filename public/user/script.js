@@ -1,5 +1,4 @@
 //SUPABASE
-const SUPABASE_URL = "https://avvelquwyslzkodskshw.supabase.co";
 const { createClient } = supabase;
 supabase = createClient(
 	"https://avvelquwyslzkodskshw.supabase.co",
