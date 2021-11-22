@@ -1,8 +1,7 @@
+//SUPABASE
 const SUPABASE_URL = "https://avvelquwyslzkodskshw.supabase.co";
-
 const SERVICE_KEY =
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNjMzMzgzMTU1LCJleHAiOjE5NDg5NTkxNTV9.tmww3KW2ZpsLvhPlGq2es22MTmXuWK9Mp-wyGMvAtUY";
-
 const { createClient } = supabase;
 supabase = createClient(
 	"https://avvelquwyslzkodskshw.supabase.co",
@@ -17,22 +16,19 @@ window.addEventListener("DOMContentLoaded", () => {
 	const price = document.querySelector("#price");
 	const productList = document.querySelector("#product_list");
 	const submitBt = document.querySelector("#submit");
+	const logOut = document.querySelector("#log_out");
 
 	//LOGOUT
-	const user = supabase.auth.user();
-	console.log(user);
-	const logInPage = "http://127.0.0.1:5501/index.html";
-	fetch(`http://localhost:3001/logout/`, {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({
-			// email: emailValue,
-		}),
-	})
-		.then((response) => response.json())
-		.then((result) => console.log(result))
-		.catch((error) => console.log("error", error));
-	window.location.href = logInPage;
+	// const session = supabase.auth.session();
+	// console.log(session);
+	// const user = supabase.auth.user();
+	// console.log(user);
+
+	// logOut.addEventListener("click", async () => {
+	// 	const { error } = await supabase.auth.signOut();
+	// 	console.log(supabase);
+	// window.location.href = logInPage;
+	// });
 
 	//SUBMIT
 	submitBt.addEventListener("click", (event) => {

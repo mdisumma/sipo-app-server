@@ -18,7 +18,7 @@ header {
 	display: block;
 	border-bottom: 1px solid var(--green);
 }
-#sign_out {
+#log_out {
 	margin-left: 90%;
 	width: 10%;
 }
