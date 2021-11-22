@@ -15,30 +15,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	const submitBt = document.querySelector("#submit");
 	const logOut = document.querySelector("#log_out");
 
-	//LOGOUT
-	logOut.addEventListener("click", async () => {
-		const { error } = await supabase.auth.signOut();
-		console.log(supabase);
-		window.location.href = "/";
-	});
-
-	//SUBMIT
-	submitBt.addEventListener("click", (event) => {
-		fetch("http://localhost:3001", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				name: product.value,
-				pack: pack.value,
-				image: image.value,
-				price: price.value,
-			}),
-		})
-			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
-	});
-
 	//DATA
 	fetch("http://localhost:3001/api")
 		.then((response) => response.json())
@@ -62,6 +38,28 @@ window.addEventListener("DOMContentLoaded", () => {
 							<button id="update" type="update" value="update">update</button>
 							</div>
 				`;
+			});
+
+			//LOGOUT
+			logOut.addEventListener("click", async () => {
+				// window.location.href = `/`;
+			});
+
+			//SUBMIT
+			submitBt.addEventListener("click", (event) => {
+				fetch("http://localhost:3001", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						name: product.value,
+						pack: pack.value,
+						image: image.value,
+						price: price.value,
+					}),
+				})
+					.then((response) => response.text())
+					.then((result) => console.log(result))
+					.catch((error) => console.log("error", error));
 			});
 
 			//DELETE

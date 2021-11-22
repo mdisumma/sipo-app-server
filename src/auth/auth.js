@@ -42,7 +42,6 @@ const Auth = (app, database, table) => {
 	app.post("/logout/", async function (request, response) {
 		const { error } = await database.auth.signOut();
 		console.log(request.body);
-		request.send(request.head);
 	});
 
 	//MAGICLINK

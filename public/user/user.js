@@ -5,13 +5,6 @@ supabase = createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
 );
 
-//LOGOUT
-logOut.addEventListener("click", async () => {
-	const { error } = await supabase.auth.signOut();
-	console.log(supabase);
-	window.location.href = "/";
-});
-
 const id = document.querySelector("#id");
 const product = document.querySelector("#product");
 const pack = document.querySelector("#pack");
@@ -19,6 +12,16 @@ const image = document.querySelector("#image");
 const price = document.querySelector("#price");
 const productList = document.querySelector("#product_list");
 const productOrder = document.querySelector("#product_order");
+const logOut = document.querySelector("#log_out");
+
+//LOGOUT
+logOut.addEventListener("click", () => {
+	fetch("http://localhost:3001/logout/")
+		.then((response) => response.text())
+		.then((result) => console.log(result))
+		.catch((error) => console.log("error", error));
+	// window.location.href = "/";
+});
 
 const orderList = [
 	{
