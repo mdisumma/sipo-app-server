@@ -62,12 +62,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 				if (result.data[0].admin === true) {
 					// window.location.href = `http://localhost:3001/admin#${result.session.access_token}`;
-					// window.location.href = `/admin/`;
+					window.location.href = `/admin/`;
 					console.log(result.data[0].admin);
 				}
 				if (result.data[0].admin === false) {
 					// window.location.href = `http://localhost:3001/user#${result.session.access_token}`;
-					// window.location.href = `/user/`;
+					window.location.href = `/user/`;
 					console.log(result.data[0].admin);
 				}
 			})
