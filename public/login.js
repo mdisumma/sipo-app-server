@@ -11,31 +11,30 @@ window.addEventListener("DOMContentLoaded", () => {
 	//SignUP
 	signUp.addEventListener("click", (e) => {
 		e.preventDefault();
+		if (email.value && password.value) {
+			const post = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: email.value,
+					password: password.value,
+				}),
+			};
 
-		console.log(email.value);
-		console.log(password.value);
-
-		const post = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: email.value,
-				password: password.value,
-			}),
-		};
-
-		fetch("http://localhost:3001/signUp/", post)
-			.then((response) => response.text())
-			.then((result) => {
-				console.log(result);
-				if (result.length === 0) {
-					alert("please check your email");
-				}
-				if (result.length !== 0) {
-					alert("this user already exist");
-				}
-			})
-			.catch((error) => console.log("error", error));
+			fetch("http://localhost:3001/signUp/", post)
+				.then((response) => response.json())
+				.then((result) => {
+					console.log(result);
+					if (result.length === 0) {
+						alert("please check your email");
+					} else {
+						alert(`${result[0].email} already exist`);
+					}
+				})
+				.catch((error) => console.log("error", error));
+		} else {
+			alert("please provide your email and password");
+		}
 	});
 
 	//LogIN
@@ -43,54 +42,37 @@ window.addEventListener("DOMContentLoaded", () => {
 	signIn.addEventListener("click", async (e) => {
 		e.preventDefault();
 
-		// console.log(email.value);
-		// console.log(password.value);
+		if (email.value && password.value) {
+			var post = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: email.value,
+					password: password.value,
+				}),
+			};
 
-		var post = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: email.value,
-				password: password.value,
-			}),
-		};
+			fetch("http://localhost:3001/logIn/", post)
+				.then((response) => response.json())
+				.then((result) => {
+					console.log(result);
 
-		fetch("http://localhost:3001/logIn/", post)
-			.then((response) => response.json())
-			.then((result) => {
-				console.log(result);
+					if (result.data[0].admin === true) {
+						// window.location.href = `http://localhost:3001/admin#${result.session.access_token}`;
+						window.location.href = `/admin/`;
+						// console.log(result.data[0].admin);
+					}
+					if (result.data[0].admin === false) {
+						// window.location.href = `http://localhost:3001/user#${result.session.access_token}`;
+						window.location.href = `/user/`;
+						console.log(result.data[0].admin);
+					}
+				})
 
-				if (result.data[0].admin === true) {
-					// window.location.href = `http://localhost:3001/admin#${result.session.access_token}`;
-					window.location.href = `/admin/`;
-					console.log(result.data[0].admin);
-				}
-				if (result.data[0].admin === false) {
-					// window.location.href = `http://localhost:3001/user#${result.session.access_token}`;
-					window.location.href = `/user/`;
-					console.log(result.data[0].admin);
-				}
-			})
-
-			.catch((error) => console.log("error", error));
-	});
-
-	//LogOUT
-
-	logOut.addEventListener("click", (e) => {
-		e.preventDefault();
-		var post = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: email.value,
-				password: password.value,
-			}),
-		};
-		fetch("http://localhost:3001/logout/", post)
-			.then((response) => response.text())
-			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
+				.catch((error) => console.log("error", error));
+		} else {
+			alert("please provide your email and password");
+		}
 	});
 
 	//SignMAGICLINK
@@ -98,41 +80,45 @@ window.addEventListener("DOMContentLoaded", () => {
 		e.preventDefault();
 
 		console.log(email.value);
+		if (!email.value) {
+			alert("please provide your email");
+		} else {
+			var post = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: email.value,
+				}),
+			};
 
-		var post = {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: email.value,
-			}),
-		};
-
-		fetch(`http://localhost:3001/authMagicLink/`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				email: email.value,
-			}),
-		})
-			.then((response) => response.json())
-			.then((result) => console.log(result))
-			.catch((error) => console.log("error", error));
+			fetch(`http://localhost:3001/authMagicLink/`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: email.value,
+				}),
+			})
+				.then((response) => response.json())
+				.then((result) => console.log(result))
+				.catch((error) => console.log("error", error));
+		}
 	});
 
 	//signGOOGLE
-	async function signInWithGoogle() {
+	signGoogle.addEventListener("click", async (e) => {
+		e.preventDefault();
 		const { createClient } = supabase;
 		supabase = createClient(
 			"https://avvelquwyslzkodskshw.supabase.co",
 			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
 		);
-		const { user, session, error } = await supabase.auth.signIn({
-			provider: "google",
-		});
-	}
-	signGoogle.addEventListener("click", (e) => {
-		e.preventDefault();
-		signInWithGoogle();
-		console.log(supabase.auth);
+		const { user, session, error } = await supabase.auth.signIn(
+			{
+				provider: "google",
+			},
+			{
+				redirectTo: "http://localhost:3001/user/",
+			}
+		);
 	});
 });
