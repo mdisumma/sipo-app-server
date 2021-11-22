@@ -42,6 +42,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
 			//LOGOUT
 			logOut.addEventListener("click", async () => {
+				var post = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						message: "Log out",
+					}),
+				};
+				fetch("http://localhost:3001/logout/", post)
+					.then((response) => response.text())
+					.then((result) => console.log(result))
+					.catch((error) => console.log("error", error));
 				// window.location.href = `/`;
 			});
 
