@@ -1,9 +1,10 @@
 {
-  "name": "sipo-server",
+  "name": "sipo-app-server",
   "version": "1.0.0",
   "main": "server.js ",
   "scripts": {
-    "start": "nodemon -r dotenv/config server.js"
+    "start": "nodemon server.js",
+    "dotenv": "nodemon -r dotenv/config server.js"
   },
   "keywords": [],
   "author": "marco",

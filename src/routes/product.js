@@ -1,7 +1,6 @@
-//PRODUCT
-const Product = (app, url, database, table) => {
+const Product = (app, database, table) => {
 	app
-		.route(url)
+		.route("/")
 
 		//POST
 		.post(async (request, response) => {

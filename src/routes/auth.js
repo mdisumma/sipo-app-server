@@ -1,4 +1,3 @@
-//AUTH
 const Auth = (app, database, table) => {
 	//SINGUP
 	app.post("/signup/", async function (request, response) {
