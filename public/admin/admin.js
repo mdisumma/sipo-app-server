@@ -5,6 +5,10 @@ supabase = createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
 );
 
+console.log(supabase);
+const user = supabase.auth.user();
+console.log(user);
+
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
 	const product = document.querySelector("#product");

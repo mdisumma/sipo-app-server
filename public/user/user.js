@@ -5,48 +5,50 @@ supabase = createClient(
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
 );
 
-const id = document.querySelector("#id");
-const product = document.querySelector("#product");
-const pack = document.querySelector("#pack");
-const image = document.querySelector("#image");
-const price = document.querySelector("#price");
-const productList = document.querySelector("#product_list");
-const productOrder = document.querySelector("#product_order");
-const logOut = document.querySelector("#log_out");
+console.log(supabase);
+const user = supabase.auth.user();
+console.log(user);
 
-//LOGOUT
-logOut.addEventListener("click", () => {
-	var post = {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({
-			message: "Log out",
-		}),
-	};
-	fetch("http://localhost:3001/logout/", post)
-		.then((response) => response.text())
-		.then((result) => console.log(result))
-		.catch((error) => console.log("error", error));
-	window.location.href = `/`;
-});
+//DOM
+window.addEventListener("DOMContentLoaded", () => {
+	const productList = document.querySelector("#product_list");
+	const productOrder = document.querySelector("#product_order");
+	const logOut = document.querySelector("#log_out");
 
-const orderList = [
-	{
-		name: "Name",
-		number: "Item",
-		unit: "Unit Gr",
-		totUnit: "Tot Gr",
-		price: "Price £",
-		totPrice: "Tot £",
-		trash: "",
-	},
-];
+	//LOGOUT
+	logOut.addEventListener("click", () => {
+		var post = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				message: "Log out",
+			}),
+		};
+		fetch("http://localhost:3001/logout/", post)
+			.then((response) => response.text())
+			.then((result) => console.log(result))
+			.catch((error) => console.log("error", error));
+		window.location.href = `/`;
+	});
 
-const displayOrderList = (e) => {
-	productOrder.innerHTML = "";
-	let i = 0;
-	orderList.map((item) => {
-		productOrder.innerHTML += `
+	//ORDER LIST
+	const orderList = [
+		{
+			name: "Name",
+			number: "Item",
+			unit: "Unit Gr",
+			totUnit: "Tot Gr",
+			price: "Price £",
+			totPrice: "Tot £",
+			trash: "",
+		},
+	];
+
+	const displayOrderList = (e) => {
+		productOrder.innerHTML = "";
+		let i = 0;
+		orderList.map((item) => {
+			productOrder.innerHTML += `
 		<ul id="${i++}">
 		<li class="product_name">${item.name}</li>
 		<li>${item.number}</li>
@@ -56,27 +58,25 @@ const displayOrderList = (e) => {
 		<li>${item.totPrice}</li>
 		<li class="trash"><button >${item.trash}</button></li>
 		</ul>`;
-	});
+		});
 
-	const trash = document.querySelector("#product_order");
+		const trash = document.querySelector("#product_order");
 
-	trash.addEventListener("click", (e) => {
-		const position = e.path[3].id;
-		console.log(position);
+		trash.addEventListener("click", (e) => {
+			const position = e.path[3].id;
+			console.log(position);
 
-		const deleteProduct = () => {
-			orderList.splice(position, 1);
-		};
-		console.log(orderList);
-		deleteProduct();
-		console.log(orderList);
+			const deleteProduct = () => {
+				orderList.splice(position, 1);
+			};
+			console.log(orderList);
+			deleteProduct();
+			console.log(orderList);
 
-		displayOrderList();
-	});
-};
+			displayOrderList();
+		});
+	};
 
-//DOM
-window.addEventListener("DOMContentLoaded", () => {
 	//DATA
 	fetch("http://localhost:3001/api")
 		.then((response) => response.json())
@@ -113,6 +113,8 @@ window.addEventListener("DOMContentLoaded", () => {
 				</div>
 				`;
 			});
+
+			//INPUTS
 			const addButton = document.querySelector("#product_list");
 			// console.log(addButton);
 			addButton.addEventListener("click", (e) => {

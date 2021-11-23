@@ -1,3 +1,9 @@
+const { createClient } = supabase;
+supabase = createClient(
+	"https://avvelquwyslzkodskshw.supabase.co",
+	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
+);
+
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
 	const email = document.querySelector("#email");
@@ -6,7 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	const signIn = document.querySelector("#sign_in");
 	const signMagiclink = document.querySelector("#sign_magiclink");
 	const signGoogle = document.querySelector("#sign_google");
-	const logOut = document.querySelector("#log_out");
 
 	//SignUP
 	signUp.addEventListener("click", (e) => {
@@ -58,13 +63,18 @@ window.addEventListener("DOMContentLoaded", () => {
 					console.log(result);
 
 					if (result.data[0].admin === true) {
-						// window.location.href = `http://localhost:3001/admin#${result.session.access_token}`;
 						window.location.href = `/admin/#`;
+						// window.location.href = `http://localhost:3001/admin/#`;
+						// window.location.href = `/admin/#${result.session.access_token}`;
+						// window.location.href = `http://localhost:3001/admin/#${result.session.access_token}`;
 						console.log(result.data[0].admin);
 					}
 					if (result.data[0].admin === false) {
-						// window.location.href = `http://localhost:3001/user#${result.session.access_token}`;
 						window.location.href = `/user/#`;
+						// window.location.href = `http://localhost:3001/user/#`;
+						// window.location.href = `/user/#${result.session.access_token}`;
+						// window.location.href = `http://localhost:3001/user/#${result.session.access_token}`;
+
 						console.log(result.data[0].admin);
 					}
 				})
@@ -107,11 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//signGOOGLE
 	signGoogle.addEventListener("click", async (e) => {
 		e.preventDefault();
-		const { createClient } = supabase;
-		supabase = createClient(
-			"https://avvelquwyslzkodskshw.supabase.co",
-			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
-		);
+
 		const { user, session, error } = await supabase.auth.signIn(
 			{
 				provider: "google",
