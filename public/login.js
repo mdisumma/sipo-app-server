@@ -3,6 +3,9 @@ supabase = createClient(
 	"https://avvelquwyslzkodskshw.supabase.co",
 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzMzM4MzE1NSwiZXhwIjoxOTQ4OTU5MTU1fQ.NHMBE0yY82XaMvPeBVWz56hIgjQLvYL9IkvsfFQkU8g"
 );
+console.log(supabase);
+const user = supabase.auth.user();
+console.log(user);
 
 //DOM
 window.addEventListener("DOMContentLoaded", () => {
@@ -63,15 +66,15 @@ window.addEventListener("DOMContentLoaded", () => {
 					console.log(result);
 
 					if (result.data[0].admin === true) {
-						window.location.href = `/admin/#`;
-						// window.location.href = `http://localhost:3001/admin/#`;
+						// window.location.href = `/admin/#`;
+						window.location.href = `http://localhost:3001/admin/#`;
 						// window.location.href = `/admin/#${result.session.access_token}`;
 						// window.location.href = `http://localhost:3001/admin/#${result.session.access_token}`;
 						console.log(result.data[0].admin);
 					}
 					if (result.data[0].admin === false) {
-						window.location.href = `/user/#`;
-						// window.location.href = `http://localhost:3001/user/#`;
+						// window.location.href = `/user/#`;
+						window.location.href = `http://localhost:3001/user/#`;
 						// window.location.href = `/user/#${result.session.access_token}`;
 						// window.location.href = `http://localhost:3001/user/#${result.session.access_token}`;
 
