@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch("http://localhost:3001/signUp/", post)
+			fetch("http://localhost:3000/signUp/", post)
 				.then((response) => response.json())
 				.then((result) => {
 					console.log(result);
@@ -60,23 +60,23 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch("http://localhost:3001/logIn/", post)
+			fetch("http://localhost:3000/logIn/", post)
 				.then((response) => response.json())
 				.then((result) => {
 					console.log(result);
 
 					if (result.data[0].admin === true) {
 						// window.location.href = `/admin/#`;
-						// window.location.href = `http://localhost:3001/admin/#`;
+						// window.location.href = `http://localhost:3000/admin/#`;
 						window.location.href = `/admin/#${result.session.access_token}`;
-						// window.location.href = `http://localhost:3001/admin/#${result.session.access_token}`;
+						// window.location.href = `http://localhost:3000/admin/#${result.session.access_token}`;
 						console.log(result.data[0].admin);
 					}
 					if (result.data[0].admin === false) {
 						// window.location.href = `/user/#`;
-						// window.location.href = `http://localhost:3001/user/#`;
+						// window.location.href = `http://localhost:3000/user/#`;
 						window.location.href = `/user/#${result.session.access_token}`;
-						// window.location.href = `http://localhost:3001/user/#${result.session.access_token}`;
+						// window.location.href = `http://localhost:3000/user/#${result.session.access_token}`;
 
 						console.log(result.data[0].admin);
 					}
@@ -104,7 +104,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch(`http://localhost:3001/authMagicLink/`, {
+			fetch(`http://localhost:3000/authMagicLink/`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -126,7 +126,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				provider: "google",
 			},
 			{
-				redirectTo: "http://localhost:3001/user/",
+				redirectTo: "http://localhost:3000/user/",
 			}
 		);
 	});
