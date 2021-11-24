@@ -20,7 +20,7 @@ const submitBt = document.querySelector("#submit");
 const logOut = document.querySelector("#log_out");
 console.log("the DOM is loaded");
 //DATA
-fetch("http://localhost:3000/api")
+fetch("http://localhost:3001/api")
 	.then((response) => response.json())
 	.then((data) => {
 		data.map((item) => {
@@ -53,7 +53,7 @@ fetch("http://localhost:3000/api")
 					message: "Log out",
 				}),
 			};
-			fetch("http://localhost:3000/logout/", post)
+			fetch("http://localhost:3001/logout/", post)
 				.then((response) => response.text())
 				.then((result) => console.log(result))
 				.catch((error) => console.log("error", error));
@@ -62,7 +62,7 @@ fetch("http://localhost:3000/api")
 
 		//SUBMIT
 		submitBt.addEventListener("click", (event) => {
-			fetch("http://localhost:3000", {
+			fetch("http://localhost:3001", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -90,7 +90,7 @@ fetch("http://localhost:3000/api")
 						.currentSrc
 				);
 
-				fetch("http://localhost:3000", {
+				fetch("http://localhost:3001", {
 					method: "DELETE",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
@@ -126,7 +126,7 @@ fetch("http://localhost:3000/api")
 				console.log(targetImage);
 				console.log(targetPrice);
 
-				fetch("http://localhost:3000", {
+				fetch("http://localhost:3001", {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
