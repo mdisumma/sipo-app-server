@@ -7,7 +7,7 @@ import Auth from "./src/routes/auth.js";
 import Product from "./src/routes/product.js";
 
 const server = express();
-const port = 3000;
+const port = 3001;
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
