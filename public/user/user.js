@@ -28,7 +28,7 @@ logOut.addEventListener("click", () => {
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
-	window.location.href = `/`;
+	window.location.href = `http://46.101.76.197/`;
 });
 
 //ORDER LIST

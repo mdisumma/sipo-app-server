@@ -57,7 +57,7 @@ fetch("http://localhost:3000/api")
 				.then((response) => response.text())
 				.then((result) => console.log(result))
 				.catch((error) => console.log("error", error));
-			window.location.href = `/`;
+			window.location.href = `http://46.101.76.197/`;
 		});
 
 		//SUBMIT

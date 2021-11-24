@@ -66,17 +66,12 @@ window.addEventListener("DOMContentLoaded", () => {
 					console.log(result);
 
 					if (result.data[0].admin === true) {
-						// window.location.href = `/admin/#`;
-						// window.location.href = `http://localhost:3000/admin/#`;
-						window.location.href = `/admin/#${result.session.access_token}`;
-						// window.location.href = `http://localhost:3000/admin/#${result.session.access_token}`;
+						window.location.href = `http://46.101.76.197/admin/`;
+
 						console.log(result.data[0].admin);
 					}
 					if (result.data[0].admin === false) {
-						// window.location.href = `/user/#`;
-						// window.location.href = `http://localhost:3000/user/#`;
-						window.location.href = `/user/#${result.session.access_token}`;
-						// window.location.href = `http://localhost:3000/user/#${result.session.access_token}`;
+						window.location.href = `http://46.101.76.197/user/`;
 
 						console.log(result.data[0].admin);
 					}
