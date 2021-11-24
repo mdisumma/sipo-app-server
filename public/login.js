@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch("http://localhost:3000/signUp/", post)
+			fetch("http://46.101.76.197/signUp/", post)
 				.then((response) => response.json())
 				.then((result) => {
 					console.log(result);
@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch("http://localhost:3000/logIn/", post)
+			fetch("http://46.101.76.197/logIn/", post)
 				.then((response) => response.json())
 				.then((result) => {
 					console.log(result);
@@ -99,7 +99,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				}),
 			};
 
-			fetch(`http://localhost:3000/authMagicLink/`, {
+			fetch(`http://46.101.76.197/authMagicLink/`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				provider: "google",
 			},
 			{
-				redirectTo: "http://localhost:3000/user/",
+				redirectTo: "http://46.101.76.197/user/",
 			}
 		);
 	});

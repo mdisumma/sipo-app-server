@@ -20,7 +20,7 @@ const submitBt = document.querySelector("#submit");
 const logOut = document.querySelector("#log_out");
 console.log("the DOM is loaded");
 //DATA
-fetch("http://localhost:3000/api")
+fetch("http://46.101.76.197/api")
 	.then((response) => response.json())
 	.then((data) => {
 		data.map((item) => {
@@ -53,7 +53,7 @@ fetch("http://localhost:3000/api")
 					message: "Log out",
 				}),
 			};
-			fetch("http://localhost:3000/logout/", post)
+			fetch("http://46.101.76.197/logout/", post)
 				.then((response) => response.text())
 				.then((result) => console.log(result))
 				.catch((error) => console.log("error", error));

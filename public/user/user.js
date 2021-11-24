@@ -24,7 +24,7 @@ logOut.addEventListener("click", () => {
 			message: "Log out",
 		}),
 	};
-	fetch("http://localhost:3000/logout/", post)
+	fetch("http://46.101.76.197/logout/", post)
 		.then((response) => response.text())
 		.then((result) => console.log(result))
 		.catch((error) => console.log("error", error));
@@ -79,7 +79,7 @@ const displayOrderList = (e) => {
 
 //DATA
 console.log("fetch starts here");
-fetch("http://localhost:3000/api")
+fetch("http://46.101.76.197/api")
 	.then((response) => response.json())
 	.then((data) => {
 		console.log(data);
