@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			//SUBMIT
 			submitBt.addEventListener("click", (event) => {
-				fetch("http://localhost:3000", {
+				fetch("http://46.101.76.197/", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 							.currentSrc;
 					const price = e.path[2].children[1].children[4].innerText;
 
-					fetch("http://localhost:3000", {
+					fetch("http://46.101.76.197/", {
 						method: "DELETE",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					console.log(targetImage);
 					console.log(targetPrice);
 
-					fetch("http://localhost:3000", {
+					fetch("http://46.101.76.197/", {
 						method: "PUT",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
