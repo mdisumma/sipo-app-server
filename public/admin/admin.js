@@ -82,24 +82,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			deleteBt.addEventListener("click", (e) => {
 				if (e.target.value === "delete") {
-					console.log(e.path[2].children[1].children[0].innerText);
-					console.log(e.path[2].children[1].children[2].innerText);
-					console.log(e.path[2].children[1].children[4].innerText);
-					console.log(
+					const name = e.path[2].children[1].children[0].innerText;
+					const pack = e.path[2].children[1].children[2].innerText;
+					const image =
 						e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
-							.currentSrc
-					);
+							.currentSrc;
+					const price = e.path[2].children[1].children[4].innerText;
 
 					fetch("http://localhost:3000", {
 						method: "DELETE",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
-							name: e.path[2].children[1].children[0].innerText,
-							pack: e.path[2].children[1].children[2].innerText,
-							image:
-								e.path[2].children[0].attributes[0].ownerElement.childNodes[1]
-									.currentSrc,
-							price: e.path[2].children[1].children[4].innerText,
+							name: name,
+							pack: pack,
+							image: image,
+							price: price,
 						}),
 					})
 						.then((response) => response.text())
